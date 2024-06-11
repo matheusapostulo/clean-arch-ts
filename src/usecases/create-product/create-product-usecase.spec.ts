@@ -1,3 +1,5 @@
+import CreateProductUseCase from "./create-product.usecase";
+
 describe("Create product usecase unit test", () => {
     it("Should create a product", async() => {
         // Dados de entrada
@@ -6,8 +8,6 @@ describe("Create product usecase unit test", () => {
             name: "iPhone",
             cost: 100
         };
-        // Execução do usecase
-        
         // Dados de saída
         const output = {
             id: "abc",
@@ -15,5 +15,16 @@ describe("Create product usecase unit test", () => {
             cost: 100,
             salesPrice: 300
         };
+
+        const productGateway = () => {
+            return{
+                create: jest.fn(),
+            };
+        };
+
+        // Execução do usecase
+        const createProductUsecase = new CreateProductUseCase(productGateway());
+        const result = await createProductUsecase.execute(input)
+        expect(result).toEqual(output)
     })
 })

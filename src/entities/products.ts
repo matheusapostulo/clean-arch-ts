@@ -2,13 +2,19 @@ export default class Product{
     _name: string;
     _cost: number = 0;
     _salesPrice: number = 0;
+    _id: string;
 
-    constructor(name: string){
+    constructor(id:string, name: string, ){
         this._name = name;
+        this._id = id;
     }
 
     get name(): string {
         return this._name;
+    }
+
+    get id(): string{
+        return this._id;
     }
 
     set name(name: string){
